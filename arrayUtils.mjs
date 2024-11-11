@@ -6,8 +6,8 @@ class ArrayUtils {
     
         let arrayMidPoint = Math.round(array.length / 2);
     
-        let leftArraySorted = mergeSort(array.slice(0, arrayMidPoint));
-        let rightArraySorted = mergeSort(array.slice(arrayMidPoint, array.length));
+        let leftArraySorted = ArrayUtils.mergeSort(array.slice(0, arrayMidPoint));
+        let rightArraySorted = ArrayUtils.mergeSort(array.slice(arrayMidPoint, array.length));
     
         let arraySorted = [];
         let leftArrayIndex = 0;
