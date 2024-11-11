@@ -29,6 +29,28 @@ class Tree {
         }
     }
 
+    insert(value) {
+        this.root = this.#recursiveInsert(value, this.root);
+    }
+
+    #recursiveInsert(value, node) {
+        if (node === undefined || node === null) {
+            return new Node(value);
+        }
+
+        if (node.value === value) {
+            return node;
+        }
+
+        if (value > node.value) {
+            node.right = this.#recursiveInsert(value, node.right);
+        } else {
+            node.left = this.#recursiveInsert(value, node.left);
+        }
+
+        return node;
+    }
+
     find(value) {
         return this.#recursiveFind(value, this.root);
     }
