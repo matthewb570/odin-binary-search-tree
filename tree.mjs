@@ -51,6 +51,51 @@ class Tree {
         return node;
     }
 
+    delete(value) {
+        this.root = this.#recursiveDelete(value, this.root);
+    }
+
+    #recursiveDelete(value, node) {
+        if (node === null) {
+            return node;
+        }
+
+        if (node.value === value) {
+            if (node.left !== null && node.right !== null) {
+                const inOrderSuccessor = this.#getInOrderSuccessor(node).value;
+                this.#recursiveDelete(inOrderSuccessor, node);
+                node.value = inOrderSuccessor;
+                return node;
+            }
+
+            if (node.left === null) {
+                return node.right;
+            }
+
+            return node.left;
+        }
+
+        if (value > node.value) {
+            node.right = this.#recursiveDelete(value, node.right);
+        } else {
+            node.left = this.#recursiveDelete(value, node.left);
+        }
+
+        return node;
+    }
+
+    #getInOrderSuccessor(startNode) {
+        return this.#getMinChildValueOfNode(startNode.right);
+    }
+
+    #getMinChildValueOfNode(node) {
+        if (node.left === null) {
+            return node;
+        }
+
+        return this.#getMinChildValueOfNode(node.left);
+    }
+
     find(value) {
         return this.#recursiveFind(value, this.root);
     }
