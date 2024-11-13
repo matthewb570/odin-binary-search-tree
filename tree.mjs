@@ -187,6 +187,21 @@ class Tree {
         this.#recursivePostOrder(callback, currentNode.right);
         callback(currentNode);
     }
+
+    height(node) {
+        if (node === null) {
+            return -1;
+        }
+
+        const leftHeight = this.height(node.left);
+        const rightHeight = this.height(node.right);
+
+        if (leftHeight > rightHeight) {
+            return leftHeight + 1;
+        }
+
+        return rightHeight + 1;
+    }
 }
 
 export default Tree;
