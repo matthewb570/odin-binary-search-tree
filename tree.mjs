@@ -133,6 +133,60 @@ class Tree {
             }
         }
     }
+
+    inOrder(callback) {
+        if (callback === undefined || callback === null) {
+            throw new Error("This function's callback parameter is required");
+        }
+
+        this.#recursiveInOrder(callback, this.root);
+    }
+
+    #recursiveInOrder(callback, currentNode) {
+        if (currentNode === undefined || currentNode === null) {
+            return;
+        }
+        
+        this.#recursiveInOrder(callback, currentNode.left);
+        callback(currentNode);
+        this.#recursiveInOrder(callback, currentNode.right);
+    }
+
+    preOrder(callback) {
+        if (callback === undefined || callback === null) {
+            throw new Error("This function's callback parameter is required");
+        }
+
+        this.#recursivePreOrder(callback, this.root);
+    }
+
+    #recursivePreOrder(callback, currentNode) {
+        if (currentNode === undefined || currentNode === null) {
+            return;
+        }
+        
+        callback(currentNode);
+        this.#recursivePreOrder(callback, currentNode.left);
+        this.#recursivePreOrder(callback, currentNode.right);
+    }
+
+    postOrder(callback) {
+        if (callback === undefined || callback === null) {
+            throw new Error("This function's callback parameter is required");
+        }
+
+        this.#recursivePostOrder(callback, this.root);
+    }
+
+    #recursivePostOrder(callback, currentNode) {
+        if (currentNode === undefined || currentNode === null) {
+            return;
+        }
+
+        this.#recursivePostOrder(callback, currentNode.left);
+        this.#recursivePostOrder(callback, currentNode.right);
+        callback(currentNode);
+    }
 }
 
 export default Tree;
