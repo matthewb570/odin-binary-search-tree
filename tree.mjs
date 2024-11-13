@@ -115,6 +115,24 @@ class Tree {
 
         return this.#recursiveFind(value, root.left);
     }
+
+    levelOrder(callback) {
+        if (callback === undefined || callback === null) {
+            throw new Error("This function's callback parameter is required");
+        }
+        
+        const queue = new Array(this.root);
+        while(queue.length > 0) {
+            const currentNode = queue.splice(0, 1)[0];
+            callback(currentNode);
+            if (currentNode.left !== null) {
+                queue.push(currentNode.left);
+            }
+            if (currentNode.right !== null) {
+                queue.push(currentNode.right);
+            }
+        }
+    }
 }
 
 export default Tree;
