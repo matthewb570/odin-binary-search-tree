@@ -225,6 +225,21 @@ class Tree {
 
         return currentDepth === null ? null : currentDepth + 1;
     }
+
+    isBalanced() {
+        let isBalanced = true;
+        const callback = (node) => {
+            let leftHeight = this.height(node.left);
+            let rightHeight = this.height(node.right);
+            if (leftHeight > rightHeight + 1 || rightHeight > leftHeight + 1) {
+                isBalanced = false;
+            }
+        }
+
+        this.levelOrder(callback);
+
+        return isBalanced;
+    }
 }
 
 export default Tree;
