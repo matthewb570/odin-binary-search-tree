@@ -202,6 +202,29 @@ class Tree {
 
         return rightHeight + 1;
     }
+
+    depth(node) {
+        return this.#recursiveDepth(node, this.root);
+    }
+
+    #recursiveDepth(node, currentNode) {
+        if (node === null || currentNode === null) {
+            return null;
+        }
+        
+        if (currentNode.value === node.value) {
+            return 0;
+        }
+
+        let currentDepth;
+        if (node.value < currentNode.value) {
+            currentDepth = this.#recursiveDepth(node, currentNode.left);
+        } else {
+            currentDepth = this.#recursiveDepth(node, currentNode.right);
+        }
+
+        return currentDepth === null ? null : currentDepth + 1;
+    }
 }
 
 export default Tree;
