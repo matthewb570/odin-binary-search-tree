@@ -1,5 +1,9 @@
 class ArrayUtils {
     static mergeSort(array) {
+        if (array === undefined || array === null || array.length === 0) {
+            return [];
+        }
+        
         if (array.length === 1) {
             return array;
         }

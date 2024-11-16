@@ -121,15 +121,17 @@ class Tree {
             throw new Error("This function's callback parameter is required");
         }
         
-        const queue = new Array(this.root);
-        while(queue.length > 0) {
-            const currentNode = queue.splice(0, 1)[0];
-            callback(currentNode);
-            if (currentNode.left !== null) {
-                queue.push(currentNode.left);
-            }
-            if (currentNode.right !== null) {
-                queue.push(currentNode.right);
+        if (this.root !== undefined && this.root !== null) {
+            const queue = new Array(this.root);
+            while(queue.length > 0) {
+                const currentNode = queue.splice(0, 1)[0];
+                callback(currentNode);
+                if (currentNode.left !== null) {
+                    queue.push(currentNode.left);
+                }
+                if (currentNode.right !== null) {
+                    queue.push(currentNode.right);
+                }
             }
         }
     }
