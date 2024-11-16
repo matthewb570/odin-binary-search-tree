@@ -5,10 +5,10 @@ class Tree {
     root;
 
     constructor(array) {
-        this.root = this.buildTree(array);
+        this.root = this.#buildTree(array);
     }
 
-    buildTree(array) {
+    #buildTree(array) {
         // Set + spread operator creates a new array without duplicates; ArrayUtils.mergeSort() sorts the array
         const arraySortedNoDuplicates = ArrayUtils.mergeSort([...new Set(array)]);
 
@@ -239,6 +239,17 @@ class Tree {
         this.levelOrder(callback);
 
         return isBalanced;
+    }
+
+    rebalance() {
+        const treeArray = new Array();
+        const callback = (node) => {
+            treeArray.push(node.value);
+        }
+
+        this.inOrder(callback);
+        console.log(treeArray);
+        this.root = this.#buildTree(treeArray);
     }
 }
 
