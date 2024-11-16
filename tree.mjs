@@ -250,7 +250,6 @@ class Tree {
         }
 
         this.inOrder(callback);
-        console.log(treeArray);
         this.root = this.#buildTree(treeArray);
     }
 }
